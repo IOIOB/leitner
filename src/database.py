@@ -45,6 +45,17 @@ def loadCards(db, session=0):
     return cards
 
 
+def loadCard(db, cardId):
+    cursor = db.cursor()
+    cursor.execute("""
+        SELECT * FROM cards
+        WHERE id = ?""",
+        (cardId))
+    card = cursor.fetchone()
+    cursor.close()
+    return card
+
+
 def insertCard(db, card):
     _, *cardTupleWithoutId = tuple(card)
     cursor = db.cursor()
@@ -60,6 +71,35 @@ def insertCard(db, card):
         cardTupleWithoutId)
     db.commit()
     cursor.close()
+
+
+def replaceCard(db, cardId, card):
+    _, *cardTupleWithoutId = tuple(card)
+    cursor = db.cursor()
+    cursor.execute("""
+        UPDATE cards
+        SET question = ?,
+            answer = ?,
+            colour = ?,
+            image = ?,
+            streak = ?,
+            sessionAsked = ?
+        WHERE
+            id == ?""",
+        (*cardTupleWithoutId, cardId))
+    db.commit()
+    cursor.close()
+
+
+def deleteCard(db, cardId):
+    cursor = db.cursor()
+    cursor.execute("""
+    DELETE FROM cards
+    WHERE id = ?""",
+    (cardId))
+    db.commit()
+    cursor.close()
+    
 
 
 def saveCards(db, cards):
