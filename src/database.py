@@ -63,7 +63,22 @@ def insertCard(db, card):
 
 
 def saveCards(db, cards):
-    pass
+    cardTuples = [
+        (*tail, head) for head, *tail in cards]
+    cursor = db.cursor()
+    cursor.executemany("""
+        UPDATE cards
+        SET question = ?,
+            answer = ?,
+            colour = ?,
+            image = ?,
+            streak = ?,
+            sessionAsked = ?
+        WHERE
+            id == ?""",
+        cardTuples)
+    db.commit()
+    cursor.close()
 
 
 def saveSession(db, session):
@@ -78,6 +93,9 @@ if __name__ == "__main__":
     print(cards)
     card = Card(0,"Poo","Pee",None,None,1, 1)
     insertCard(db, card)
+    card.id = 1
+    card.question = "SHITTERD"
+    saveCards(db, [card])
 
 
 
