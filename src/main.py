@@ -1,9 +1,6 @@
 import card
 import database
-
-
-def play(session, cards):
-    pass
+import playSession
 
 
 if __name__ == "__main__":
@@ -13,7 +10,7 @@ if __name__ == "__main__":
     cards = database.loadCards(db, session)
 
 
-    (session, cards) = play(session, cards)
+    (session, cards) = playSession.play(session, cards)
 
     saveCards(db, cards)
-    saveSession(db, cards)
+    saveSession(db, session)
