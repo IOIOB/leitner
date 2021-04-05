@@ -35,7 +35,7 @@ def loadSession(db):
     return session
 
 
-def loadCards(db, session):
+def loadCards(db, session=0):
     cursor = db.cursor()
     cursor.execute("""
         SELECT * FROM cards""")
