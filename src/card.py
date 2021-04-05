@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-@dataclass(frozen=True)
+@dataclass
 class Card:
     id: int
     question: str
@@ -9,3 +9,7 @@ class Card:
     image: str
     streak: int
     sessionAsked: int
+
+    def __iter__(self):
+        return iter(
+            [value for key, value in self.__dict__.items() ])
