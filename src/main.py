@@ -4,7 +4,7 @@ import playSession
 
 
 if __name__ == "__main__":
-    db = database.loadDatabase("cards.db")
+    db = database.loadDatabase("box.db")
 
     session = database.loadSession(db)
     cards = database.loadCards(db, session)
