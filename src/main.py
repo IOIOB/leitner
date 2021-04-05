@@ -1,33 +1,17 @@
 import card
-
-
-def loadDatabase(filename):
-    pass
-
-def loadSession(db):
-    pass
-
-
-def loadCards(db, session):
-    pass
+import database
 
 
 def play(session, cards):
     pass
 
 
-def saveCards(db, cards):
-    pass
-
-
-def saveSession(db, session):
-    pass
-
-
 if __name__ == "__main__":
-    db = loadDatabase("cards.db")
-    session = loadSession(db)
-    cards = loadCards(db, session)
+    db = database.loadDatabase("cards.db")
+
+    session = database.loadSession(db)
+    cards = database.loadCards(db, session)
+
 
     (session, cards) = play(session, cards)
 
