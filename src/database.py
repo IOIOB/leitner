@@ -85,24 +85,3 @@ def saveSession(db, session):
     pass
 
 
-if __name__ == "__main__":
-    db = loadDatabase("test.db")
-    session = loadSession(db)
-    cards = loadCards(db, session)
-    print(session)
-    print(cards)
-    card = Card(0,"Poo","Pee",None,None,1, 1)
-    insertCard(db, card)
-    card.id = 1
-    card.question = "SHITTERD"
-    saveCards(db, [card])
-
-
-
-
-
-
-
-
-
-
