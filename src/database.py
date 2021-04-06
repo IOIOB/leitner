@@ -31,16 +31,33 @@ def loadSession(db):
     session = cursor.fetchone()
     if session is None:
         session = 1
+        cursor.execute("""
+            INSERT INTO session
+                (id, number)
+            VALUES (0, 1)""")
+    else:
+        session = session[0]
     cursor.close()
     return session
+
+
+def saveSession(db, session):
+    cursor = db.cursor()
+    cursor.execute("""
+        UPDATE session
+        SET number = ?
+        WHERE id = 0""",
+        (session,))
+    db.commit()
+    cursor.close()
 
 
 def loadCards(db, session=0):
     cursor = db.cursor()
     cursor.execute("""
         SELECT * FROM cards
-        WHERE streak >= (? - sessionAsked)""",
-        (session))
+        WHERE (streak <= (? - sessionAsked))""",
+        (session,))
     cardTuples = cursor.fetchall()
     cursor.close()
     cards = [ Card(*c) for c in cardTuples ]
