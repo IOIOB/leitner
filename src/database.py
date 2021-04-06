@@ -140,7 +140,3 @@ def saveCards(db, cards):
     cursor.close()
 
 
-def saveSession(db, session):
-    pass
-
-
