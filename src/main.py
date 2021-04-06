@@ -12,5 +12,5 @@ if __name__ == "__main__":
 
     (session, cards) = playSession.play(session, cards)
 
-    saveCards(db, cards)
-    saveSession(db, session)
+    database.saveCards(db, cards)
+    database.saveSession(db, session)
