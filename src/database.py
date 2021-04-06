@@ -67,8 +67,7 @@ def loadCards(db, session=0):
 def loadAllCards(db):
     cursor = db.cursor()
     cursor.execute("""
-        SELECT * FROM cards""",
-        (session,))
+        SELECT * FROM cards""")
     cardTuples = cursor.fetchall()
     cursor.close()
     cards = [ Card(*c) for c in cardTuples ]
