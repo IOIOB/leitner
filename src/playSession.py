@@ -10,7 +10,7 @@ def getAnswerInput():
     elif rawInput.lower() == "n":
         return False
     else:
-        print(f"{rawInput} is not a valid answer...")
+        print(f"'{rawInput}' is not a valid answer...")
         return getAnswerInput()
 
 def play(session, cards):
