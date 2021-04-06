@@ -9,7 +9,9 @@ if __name__ == "__main__":
     session = database.loadSession(db)
     cards = database.loadCards(db, session)
 
-
+    print(("-----------\n"
+           "| LEITNER |\n"
+           "-----------"))
     (session, cards) = playSession.play(session, cards)
 
     database.saveCards(db, cards)
