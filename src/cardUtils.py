@@ -3,7 +3,7 @@ from card import Card
 
 def listCards(fileName):
     db = database.loadDatabase(fileName)
-    cards = database.loadCards(db=db)
+    cards = database.loadCards(db=db, session=0)
     for card in cards:
         print(str(card))
 
